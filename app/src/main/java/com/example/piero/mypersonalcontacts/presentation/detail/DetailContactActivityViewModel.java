@@ -27,4 +27,11 @@ public class DetailContactActivityViewModel extends AndroidViewModel {
         return contactDao.getById(id);
     }
 
+    public void deleteContact(int id){contactDao.deleteUserByid(id);};
+
+    public void updateContact(Contact c){contactDao.updateContact(c);}
+
+    public void addContact (Contact contact){contactDao.insertContact(contact);}
+
+
 }

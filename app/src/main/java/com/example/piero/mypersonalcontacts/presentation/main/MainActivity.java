@@ -9,8 +9,10 @@ import android.os.Bundle;
 
 import android.support.design.widget.FloatingActionButton;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -25,6 +27,8 @@ import android.view.Menu;
 import com.example.piero.mypersonalcontacts.R;
 
 import com.example.piero.mypersonalcontacts.presentation.addContact.AddContactActivity;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,13 +45,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setTitle(R.string.app_name);
-
-
-
 
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
@@ -63,13 +60,16 @@ public class MainActivity extends AppCompatActivity {
         list.setLayoutManager(layoutManager);
         list.setItemAnimator(new DefaultItemAnimator());
 
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(list.getContext(),
+                layoutManager.getOrientation());
+
+        list.addItemDecoration(dividerItemDecoration);
+
         viewModel.observeContacts()
                 .observe(this, contacts -> {
                     adapter.updateDataSet(contacts);
                 });
 
-        //viewModel.observeContacts()
-        //        .observe(this, adapter::updateDataSet);
     }
 
     @Override
@@ -129,21 +129,21 @@ public class MainActivity extends AppCompatActivity {
                 .getActionView();
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
-        searchView.setMaxWidth(Integer.MAX_VALUE);
+
 
         // listening to search query text change
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // filter recycler view when query submitted
-                adapter.getFilter().filter(query);
+
+                viewModel.updateFilter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String query) {
-                // filter recycler view when text is changed
-                adapter.getFilter().filter(query);
+
+                viewModel.updateFilter(query);
                 return false;
             }
         });

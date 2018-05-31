@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    >
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/addPhoto"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:src="@drawable/vd_photo_camera" />
+        android:src="@drawable/vd_photo_camera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/firstName"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@android:color/darker_gray"/>
 
     <EditText
         android:id="@+id/firstName"
@@ -22,15 +29,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Name"
-        android:inputType="text"/>
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addPhoto"
+        app:layout_constraintBottom_toTopOf="@id/number"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        />
 
-    <EditText
-        android:id="@+id/lastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="Surname"
-        android:inputType="text"/>
 
     <EditText
         android:id="@+id/number"
@@ -39,6 +46,12 @@
         android:layout_marginTop="10dp"
         android:hint="PhoneNumber"
         android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/firstName"
+        app:layout_constraintBottom_toTopOf="@id/email"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         />
 
     <EditText
@@ -47,7 +60,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Email"
-        android:inputType="text"/>
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/number"
+        app:layout_constraintBottom_toTopOf="@id/company"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"/>
 
     <EditText
         android:id="@+id/company"
@@ -55,7 +74,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Company"
-        android:inputType="text"/>
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email"
+        app:layout_constraintBottom_toTopOf="@id/address"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"/>
 
     <EditText
         android:id="@+id/address"
@@ -63,19 +88,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Address"
-        android:inputType="text"/>
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/company"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        />
 
-    <TextView
-        android:id="@+id/save"
-        android:layout_width="200dp"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/AddBottomBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="@color/common_google_signin_btn_text_dark_default"
-        android:backgroundTintMode="add"
-        android:gravity="center_vertical|center"
-        android:text="Save"
-        android:textColor="@color/colorAccent" />
+        android:background="@color/colorPrimary"
+        app:itemTextColor="@android:color/white"
+        app:itemIconTint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/menu_modify"/>
 
 
 
@@ -83,4 +112,6 @@
 
 
 
-</android.support.v7.widget.LinearLayoutCompat>
+
+
+</android.support.constraint.ConstraintLayout>

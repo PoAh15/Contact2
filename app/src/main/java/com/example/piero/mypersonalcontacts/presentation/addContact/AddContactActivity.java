@@ -12,10 +12,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,15 +36,14 @@ import java.io.IOException;
 
 public class AddContactActivity extends AppCompatActivity{
 
-    private TextView lastName;
+    private TextView firstName;
     private TextView number;
     private TextView email;
     private TextView company;
-    private TextView firstName;
     private TextView address;
     private ImageView takePicture;
-    private TextView save;
     private String uriString;
+    private BottomNavigationView bottomBar;
 
     private  final int MY_PERMISSIONS_REQUEST_GALLERY = 10, MY_PERMISSIONS_REQUEST_CAMERA = 20,MY_PERMISSIONS_REQUEST_WRITE = 30;
 
@@ -55,30 +56,51 @@ public class AddContactActivity extends AppCompatActivity{
 
         viewModel = ViewModelProviders.of(this).get(AddContactViewModel.class);
 
-        lastName = findViewById(R.id.lastName);
+
         number = findViewById(R.id.number);
         email = findViewById(R.id.email);
         company = findViewById(R.id.company);
         firstName = findViewById(R.id.firstName);
         address = findViewById(R.id.address);
-        takePicture  = findViewById(R.id.addPhoto);
-        save = findViewById(R.id.save);
+        takePicture = findViewById(R.id.addPhoto);
+        bottomBar = findViewById(R.id.AddBottomBar);
 
     }
+
+
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        save.setOnClickListener(view -> addContact());
         takePicture.setOnClickListener(view -> showPictureDialog());
+
+        bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.save:
+                        addContact();
+                        return true;
+
+                    case R.id.cancel:
+                        cancel();
+                        return true;
+
+                }
+
+                return true;
+            }
+        });
+
     }
+
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        save.setOnClickListener(null);
+        bottomBar.setOnNavigationItemSelectedListener(null);
         takePicture.setOnClickListener(null);
     }
 
@@ -87,7 +109,6 @@ public class AddContactActivity extends AppCompatActivity{
 
         Contact contact = new Contact(
                 firstName.getText().toString(),
-                lastName.getText().toString(),
                 number.getText().toString(),
                 email.getText().toString(),
                 company.getText().toString(),
@@ -99,6 +120,14 @@ public class AddContactActivity extends AppCompatActivity{
 
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
+
+    }
+
+    private void cancel(){
+
+    Intent goBack = new Intent(this, MainActivity.class);
+    startActivity(goBack);
+
 
     }
 

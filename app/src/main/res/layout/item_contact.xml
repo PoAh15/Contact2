@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="8dp">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,32 +22,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/secondName"
+        app:layout_constraintBottom_toTopOf="@+id/number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="?android:attr/textColorPrimary"
         android:layout_marginStart="12dp"/>
 
-    <TextView
-        android:id="@+id/secondName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:text="@tools:sample/last_names"
-        app:layout_constraintTop_toBottomOf="@+id/firstName"
-        app:layout_constraintStart_toStartOf="@+id/firstName"
-        app:layout_constraintEnd_toStartOf="@+id/number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:textColor="?android:attr/textColorSecondary"/>
 
     <TextView
         android:id="@+id/number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="@tools:sample/us_phones"
-        app:layout_constraintTop_toTopOf="@+id/secondName"
+        app:layout_constraintTop_toBottomOf="@+id/firstName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/secondName"
+        app:layout_constraintStart_toEndOf="@id/image"
         android:textColor="?android:attr/textColorSecondary"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:layout_marginStart="4dp"/>
 
 </android.support.constraint.ConstraintLayout>

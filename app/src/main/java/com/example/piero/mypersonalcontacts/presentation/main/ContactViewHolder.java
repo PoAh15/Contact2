@@ -25,14 +25,12 @@ public class ContactViewHolder extends RecyclerView.ViewHolder {
     public ContactViewHolder(View itemView) {
         super(itemView);
         firstName = itemView.findViewById(R.id.firstName);
-        secondName = itemView.findViewById(R.id.secondName);
         number = itemView.findViewById(R.id.number);
         contactImage = itemView.findViewById(R.id.image);
     }
 
     public void bind(Contact contact){
         firstName.setText(contact.getFirstName());
-        secondName.setText(contact.getLastName());
         number.setText(contact.getPhone());
 
         try {

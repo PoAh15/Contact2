@@ -14,16 +14,14 @@ public class Contact {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private final String firstName;
-    private final String lastName;
     private final String phone;
     private final String email;
     private final String company;
     private final String address;
     private final String pictures;
 
-    public Contact(String firstName, String lastName, String phone, String email, String company, String address, String pictures) {
+    public Contact(String firstName, String phone, String email, String company, String address, String pictures) {
         this.firstName = firstName;
-        this.lastName = lastName;
         this.phone = phone;
         this.email = email;
         this.company = company;
@@ -41,10 +39,6 @@ public class Contact {
 
     public String getFirstName() {
         return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public String getPhone() {

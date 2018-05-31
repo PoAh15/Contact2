@@ -20,10 +20,10 @@ import java.util.List;
  * Created by piero on 07/05/18.
  */
 
-public class MainActivityAdapter extends RecyclerView.Adapter<ContactViewHolder> implements Filterable {
+public class MainActivityAdapter extends RecyclerView.Adapter<ContactViewHolder>  {
 
     private List<Contact> data = new ArrayList<>();
-    private List<Contact> dataFiltered;
+    //private List<Contact> dataFiltered;
 
     @NonNull
     @Override
@@ -61,7 +61,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<ContactViewHolder>
         notifyDataSetChanged();// obbligatorio, aggiorna visivamente la lista
     }
 
-    @Override
+   /* @Override
     public Filter getFilter() {
         return new Filter() {
             @Override
@@ -95,6 +95,6 @@ public class MainActivityAdapter extends RecyclerView.Adapter<ContactViewHolder>
                 notifyDataSetChanged();
             }
         };
-    }
+    }*/
 
 }
