@@ -20,6 +20,9 @@ public class Contact {
     private final String address;
     private final String pictures;
 
+
+
+
     public Contact(String firstName, String phone, String email, String company, String address, String pictures) {
         this.firstName = firstName;
         this.phone = phone;

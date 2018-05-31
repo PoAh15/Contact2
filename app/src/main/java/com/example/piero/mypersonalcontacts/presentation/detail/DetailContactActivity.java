@@ -280,18 +280,17 @@ public class DetailContactActivity extends AppCompatActivity {
 
     private void saveContact(){
 
-        //ho provato cambiando metodo es adContact e mi crea un nuovo contatto perfettamente quindi il problema sta nel metodo updateContact
-
-        viewModel.updateContact(new Contact(
-
-                name.getText().toString(),
+        Contact contact = new Contact(name.getText().toString(),
                 phone.getText().toString(),
                 email.getText().toString(),
                 company.getText().toString(),
                 address.getText().toString(),
-                uriString
+                uriString);
 
-        ));
+        contact.setId(contactId);
+
+        viewModel.updateContact(contact);
+
         name.setEnabled(false);
         phone.setEnabled(false);
         email.setEnabled(false);

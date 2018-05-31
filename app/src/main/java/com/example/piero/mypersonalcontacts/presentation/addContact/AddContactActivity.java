@@ -118,16 +118,13 @@ public class AddContactActivity extends AppCompatActivity{
         );
         viewModel.addContact(contact);
 
-        Intent i = new Intent(this,MainActivity.class);
-        startActivity(i);
+        onBackPressed();
 
     }
 
     private void cancel(){
 
-    Intent goBack = new Intent(this, MainActivity.class);
-    startActivity(goBack);
-
+        onBackPressed();
 
     }
 
